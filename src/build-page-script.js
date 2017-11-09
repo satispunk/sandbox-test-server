@@ -4,7 +4,7 @@ const VirtualModulePlugin = require("virtual-module-webpack-plugin");
 
 const path = require("path");
 
-const config = ({ entry, outputFileName }) => ({
+const config = ({entry, outputFileName, code}) => ({
   entry: entry,
   output: {
     path: "/c",
@@ -35,6 +35,10 @@ const config = ({ entry, outputFileName }) => ({
             ]
           }
         }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   }
@@ -42,23 +46,27 @@ const config = ({ entry, outputFileName }) => ({
 
 module.exports = code => {
   const outputFileName = "page";
-
-  return new Promise(resolve => {
+  
+  return new Promise((resolve, reject) => {
     const entry = path.resolve(__dirname, `./client.js`);
     const memoryFs = new MemoryFS();
     const compiler = webpack(
       config({
         entry,
+        code,
         outputFileName
       })
     );
-
+    
     compiler.outputFileSystem = memoryFs;
     memoryFs.mkdirSync("/c");
-
-    compiler.run(err => {
-      if (err) console.log(err);
-
+    
+    compiler.run((err, stats) => {
+      if (err)
+        return reject(err)
+      if (stats.compilation.errors && stats.compilation.errors.length)
+        return reject(stats.compilation.errors[0])
+      
       resolve(memoryFs.readFileSync(`/c/${outputFileName}.js`));
     });
   });
