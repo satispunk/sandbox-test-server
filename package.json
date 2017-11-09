@@ -8,7 +8,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "body-parser": "^1.18.2",
+    "expose-loader": "^0.7.3",
     "express": "^4.16.2",
     "memory-fs": "^0.4.1",
     "prop-types": "^15.6.0",
@@ -18,11 +18,13 @@
     "webpack": "^3.8.1"
   },
   "devDependencies": {
+    "material-ui": "^0.19.4",
+    "prettier": "^1.8.1",
     "testcafe": "^0.18.2",
     "virtual-module-webpack-plugin": "^0.3.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prettier": "prettier {src,example}/**/*.js --write"
   },
   "repository": {
     "type": "git",

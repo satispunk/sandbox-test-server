@@ -1,15 +1,36 @@
-import {t} from 'testcafe'
-import ReactSandbox from '../src/server'
+import {t, Selector} from "testcafe";
+import sandbox from "../src/server";
 
-fixture(`Example`)
+const reactImport = `
+import React from 'react';
+`;
 
-test('load page', async () => {
-  const testUuid = await ReactSandbox.registerElement(`
-<div className="new">
-    Hello from test
-</div>
-  `)
-  
-  await t.navigateTo(`http://localhost:3000/${testUuid}`)
-  await t.wait(100000)
-})
+const customImport = `
+import Slider from 'material-ui/Slider';
+`;
+
+const withImports = (...args) => {
+  const imports = args.reduce((acc, next) => {
+    return `
+      ${acc}
+      ${next}`;
+  });
+  return code => `
+    ${imports}
+    export default ${code}
+   `;
+};
+
+const withExport = withImports(reactImport, customImport);
+const render = async code => await sandbox.render(withExport(code));
+
+fixture`Example`;
+
+test("load page", async () => {
+  const {url} = await render(`
+    <Slider default={0.5}/>
+`);
+
+  await t.navigateTo(url);
+  await t.expect(Selector(".new").visible).eql(true);
+});
