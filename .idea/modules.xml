@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/react-test-sandbox.iml" filepath="$PROJECT_DIR$/.idea/react-test-sandbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/sandbox-test-server.iml" filepath="$PROJECT_DIR$/.idea/sandbox-test-server.iml" />
     </modules>
   </component>
 </project>

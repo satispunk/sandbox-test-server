@@ -15,7 +15,16 @@ module.exports = ({ replaceVendorConfig }) => {
     compiler.outputFileSystem = memoryFs;
     memoryFs.mkdirSync('/c');
     compiler.run((err, stats) => {
-      console.log(stats.toString('normal'));
+      console.log(
+        stats.toString({
+          assets: false,
+          chunks: false,
+          chunkModules: false,
+          modules: false,
+          version: false,
+          hash: false
+        })
+      );
 
       resolve(memoryFs.readFileSync('/c/vendor.js'));
     });
