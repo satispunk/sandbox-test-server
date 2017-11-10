@@ -1,2 +1,2 @@
 # react-test-sandbox
-Sandbox for automatic testing of react components
+Sandbox for automatic testing of components (react supported only)
