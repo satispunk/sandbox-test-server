@@ -67,11 +67,8 @@ class SandboxServer {
     });
   }
   
-  renderFrom(path) {
+  renderFromFile(path) {
     return this.render(fs.readFileSync(path).toString())
-    //
-    // return readFile(path)
-    // .then(this.render)
   }
 }
 
