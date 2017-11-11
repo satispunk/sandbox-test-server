@@ -1,6 +1,6 @@
 {
   "name": "sandbox-test-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "git",
   "main": "src/server.js",
   "files": ["src"],
