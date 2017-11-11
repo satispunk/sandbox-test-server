@@ -63,7 +63,9 @@ createTestCafe('localhost', 1337, 1338)
     runner
       .src(testPath)
       .browsers(['chrome'])
-      .run()
+      .run({
+        speed: 0.01
+      })
       .then(failedCount => {
         if (failedCount) {
           process.exit(1);

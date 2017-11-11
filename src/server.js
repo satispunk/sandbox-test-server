@@ -1,6 +1,6 @@
 const express = require('express');
 const fs = require('fs');
-const { promisify } = require('util');
+const promisify = require('util.promisify');
 const htmlTemplate = require('./html-template');
 const buildVendorScript = require('./build-vendor-script');
 const buildPageScript = require('./build-page-script');
