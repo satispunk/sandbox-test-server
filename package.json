@@ -1,5 +1,5 @@
 {
-  "name": "react-test-sandbox",
+  "name": "sandbox-test-server",
   "version": "0.0.1",
   "description": "git",
   "main": "src/server.js",
@@ -32,19 +32,20 @@
     "webpack-merge": "^4.1.1"
   },
   "scripts": {
+    "example": "node ./example/testcafe-runner.js",
     "prettier": "prettier {src,example}/**/*.js --write",
     "precommit": "lint-staged"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/satispunk/react-test-sandbox.git"
+    "url": "git+https://github.com/satispunk/sandbox-test-server.git"
   },
-  "author": "",
+  "author": "Pavel Teshchin <satispunk@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/satispunk/react-test-sandbox/issues"
+    "url": "https://github.com/satispunk/sandbox-test-server/issues"
   },
-  "homepage": "https://github.com/satispunk/react-test-sandbox#readme",
+  "homepage": "https://github.com/satispunk/sandbox-test-server#readme",
   "lint-staged": {
     "*.{js,json,css}": ["npm run prettier", "git add"]
   }
