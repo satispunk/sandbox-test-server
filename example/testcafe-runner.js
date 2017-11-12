@@ -3,7 +3,7 @@ const path = require('path');
 const webpackMerge = require('webpack-merge');
 let runner = null;
 
-const sandbox = require('../src/server');
+const sandbox = require('../dist/server');
 
 createTestCafe('localhost', 1337, 1338)
   .then(testcafe => {

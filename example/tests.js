@@ -1,11 +1,11 @@
 import { t, Selector } from 'testcafe';
-import sandbox from '../src/server';
+import sandbox from '../dist/server';
 
 fixture`Example`;
 
 test('renderFromFile: check tab content is rendered', async () => {
   const { url } = await sandbox.renderFromFile(
-    require.resolve('./test-cases/basic-tab')
+    require.resolve('./test-cases/basic-tab.jsx')
   );
 
   await t.navigateTo(url);

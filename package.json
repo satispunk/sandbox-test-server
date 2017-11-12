@@ -1,9 +1,9 @@
 {
   "name": "sandbox-test-server",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "git",
-  "main": "src/server.js",
-  "files": ["src"],
+  "main": "dist/server.js",
+  "files": ["src", "dist"],
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -33,6 +33,7 @@
     "webpack-merge": "^4.1.1"
   },
   "scripts": {
+    "build": "babel src --out-dir dist",
     "example": "node ./example/testcafe-runner.js",
     "prettier": "prettier {src,example}/**/*.js --write",
     "precommit": "lint-staged"
