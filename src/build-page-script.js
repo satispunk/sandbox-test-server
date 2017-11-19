@@ -1,18 +1,22 @@
 const MemoryFS = require('memory-fs');
 const webpack = require('webpack');
-const path = require('path');
+const fs = require('fs');
 
 const pageConfig = require('./configs/page-config');
 
-module.exports = ({ code, replacePageConfig }) => {
-  const outputFileName = 'page';
+module.exports = ({ code, replacePageConfig, dirname }) => {
+  dirname = dirname || __dirname;
 
+  const outputFileName = 'page';
   return new Promise((resolve, reject) => {
-    const entry = path.resolve(__dirname, `./client.js`);
+    const entryCode = fs
+      .readFileSync(require.resolve(`./client.js`))
+      .toString();
     const memoryFs = new MemoryFS();
 
     const baseConfig = pageConfig({
-      entry,
+      dirname,
+      entryCode,
       code,
       outputFileName
     });

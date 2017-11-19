@@ -5,6 +5,7 @@ const htmlTemplate = require('./html-template');
 const buildVendorScript = require('./build-vendor-script');
 const buildPageScript = require('./build-page-script');
 const uuid = require('uuid/v1');
+const path = require('path');
 
 class SandboxServer {
   constructor() {
@@ -63,8 +64,9 @@ class SandboxServer {
     this.replaceVendorConfigCallback = callback;
   }
 
-  render(code) {
+  render(code, dirname) {
     return buildPageScript({
+      dirname,
       code,
       replacePageConfig: this.replacePageConfigCallback
     }).then(content => {
@@ -78,8 +80,11 @@ class SandboxServer {
     });
   }
 
-  renderFromFile(path) {
-    return this.render(fs.readFileSync(path).toString());
+  renderFromFile(filepath) {
+    return this.render(
+      fs.readFileSync(filepath).toString(),
+      path.dirname(filepath)
+    );
   }
 }
 
