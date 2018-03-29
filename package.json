@@ -1,6 +1,6 @@
 {
   "name": "sandbox-test-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "git",
   "main": "dist/server.js",
   "files": ["src", "dist"],
@@ -11,6 +11,7 @@
     "babel-preset-react": "^6.24.1",
     "expose-loader": "^0.7.3",
     "express": "^4.16.2",
+    "http-shutdown": "^1.2.0",
     "memory-fs": "^0.4.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

@@ -6,6 +6,7 @@ const buildVendorScript = require('./build-vendor-script');
 const buildPageScript = require('./build-page-script');
 const uuid = require('uuid/v1');
 const path = require('path');
+const HttpShutdown = require('http-shutdown');
 
 class SandboxServer {
   constructor() {
@@ -37,15 +38,19 @@ class SandboxServer {
   }
 
   listen(port, callback) {
-    this.app.listen(port, () => {
-      this.port = port;
-      callback();
-    });
+    this.server = HttpShutdown(
+      this.app.listen(port, () => {
+        this.port = port;
+        callback();
+      })
+    );
   }
 
   close(callback) {
-    delete this.port;
-    this.app.close(callback);
+    if (this.server) {
+      delete this.port;
+      this.server.shutdown(callback);
+    }
   }
 
   build() {
