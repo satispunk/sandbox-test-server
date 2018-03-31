@@ -34,7 +34,7 @@ test(
 import React from 'react';
 import {Popup, Button} from 'semantic-ui-react'
   
-export default <Popup
+export default () => <Popup
     className="popup-example"
     trigger={<Button icon="add" className="trigger-example" />}
     content='Example content'
@@ -49,3 +49,28 @@ export default <Popup
   },
   __dirname
 );
+
+test('renderFromFile: custom props', async () => {
+  const { url: url1 } = await sandbox.renderFromFile(
+    require.resolve('./test-cases/custom-props.jsx')
+  );
+
+  await t.navigateTo(url1);
+  await t.wait(3000);
+
+  const { url: url2 } = await sandbox.renderFromFile(
+    require.resolve('./test-cases/custom-props.jsx'),
+    { backgroundColor: 'blue' }
+  );
+
+  await t.navigateTo(url2);
+  await t.wait(3000);
+
+  const { url: url3 } = await sandbox.renderFromFile(
+    require.resolve('./test-cases/custom-props.jsx'),
+    { backgroundColor: 'purple' }
+  );
+
+  await t.navigateTo(url3);
+  await t.wait(3000);
+});

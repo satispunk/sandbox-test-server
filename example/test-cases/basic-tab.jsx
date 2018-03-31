@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tab } from 'semantic-ui-react';
+import {Tab} from 'semantic-ui-react';
+
 const panes = [
   {
     menuItem: 'Tab 1',
@@ -27,4 +28,6 @@ const panes = [
   }
 ];
 
-export default <Tab panes={panes} />;
+export default () => {
+  return <Tab panes={panes}/>;
+}
