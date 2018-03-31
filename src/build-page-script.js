@@ -38,7 +38,10 @@ module.exports = ({ code, replacePageConfig, dirname }) => {
           chunkModules: false,
           modules: false,
           version: false,
-          hash: false
+          hash: false,
+          timings: false,
+          builtAt: false,
+          entrypoints: false
         })
       );
 
