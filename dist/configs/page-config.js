@@ -2,10 +2,11 @@ const path = require('path');
 const VirtualModulePlugin = require('virtual-module-webpack-plugin');
 
 module.exports = ({ dirname, entryCode, outputFileName, code }) => {
-  const entryModuleName = path.join(dirname, './client.js');
-  const moduleName = path.join(dirname, './sandbox-element');
+  const entryModuleName = './client.js';
+  const moduleName = './sandbox-element.js';
 
   return {
+    mode: 'development',
     entry: entryModuleName,
     output: {
       path: '/c',

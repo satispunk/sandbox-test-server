@@ -36,11 +36,27 @@ createTestCafe('localhost', 1337, 1338)
             },
             {
               test: /\.jpe?g$|\.gif$|\.png$|\.ttf$|\.eot$|\.svg$/,
-              use: 'file-loader?name=[name].[ext]?[hash]'
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {
+                    context: path.resolve(__dirname, '..')
+                  }
+                }
+              ]
             },
             {
               test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-              loader: 'url-loader?limit=10000&mimetype=application/fontwoff'
+              use: [
+                {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 1000,
+                    mimetype: 'application/fontwoff',
+                    context: path.resolve(__dirname, '..')
+                  }
+                }
+              ]
             }
           ]
         }

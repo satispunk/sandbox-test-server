@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'development',
   entry: {
     vendor: ['react', 'react-dom']
   },
