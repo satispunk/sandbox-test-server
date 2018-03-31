@@ -69,11 +69,12 @@ class SandboxServer {
     this.replaceVendorConfigCallback = callback;
   }
 
-  render(code, dirname) {
+  render(code, dirname, props) {
     return buildPageScript({
       dirname,
       code,
-      replacePageConfig: this.replacePageConfigCallback
+      replacePageConfig: this.replacePageConfigCallback,
+      props
     }).then(content => {
       const key = uuid();
       this.cache[key] = content;
@@ -85,10 +86,11 @@ class SandboxServer {
     });
   }
 
-  renderFromFile(filepath) {
+  renderFromFile(filepath, props) {
     return this.render(
       fs.readFileSync(filepath).toString(),
-      path.dirname(filepath)
+      path.dirname(filepath),
+      props
     );
   }
 }
